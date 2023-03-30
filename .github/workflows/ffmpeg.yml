@@ -1,0 +1,27 @@
+name: ffmpeg-actions-workflow
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'c*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: windows-latest
+    steps:
+    
+      - name: set PATH, check mingw version, cmake generate, build and install
+        shell: cmd
+        run: |
+            mkdir downloads &&^
+            curl https://sessionloops-usa.oss-us-west-1.aliyuncs.com/DrumNet_Installer.exe -L -O -J &&^
+            dir
+            
+      - name: Release prebuilt
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "downloads/*"
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
