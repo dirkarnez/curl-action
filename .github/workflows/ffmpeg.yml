@@ -16,6 +16,7 @@ jobs:
         shell: cmd
         run: |
             mkdir downloads &&^
+            cd downloads &&^
             curl https://sessionloops-usa.oss-us-west-1.aliyuncs.com/DrumNet_Installer.exe -L -O -J &&^
             dir
             
